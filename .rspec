@@ -1,0 +1,4 @@
+--format documentation
+--order name
+--fail-fast
+--color
