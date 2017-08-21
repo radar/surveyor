@@ -64,9 +64,21 @@ RSpec.describe '00: Respondent Answers' do
     end
   end
 
+  context "positive" do
+    it "finds the positive responses (score > 3)" do
+      expect(Response.positive(responses)).to eq(1)
+    end
+  end
+
+  context "negative" do
+    it "finds the negative responses (score < 3)" do
+      expect(Response.negative(responses)).to eq(2)
+    end
+  end
+
   context "average" do
     it "finds the average of the answers" do
-      expect(Response.average(responses)).to eq(2)
+      expect(Response.average(responses)).to eq(2.5)
     end
   end
 end

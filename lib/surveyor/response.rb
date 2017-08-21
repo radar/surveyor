@@ -1,5 +1,5 @@
 module Surveyor
   class Response
-    # Your code goes here
+    # your code goes here
   end
 end

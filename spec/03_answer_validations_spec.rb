@@ -1,27 +1,30 @@
 require 'spec_helper'
 
-RSpec.describe Surveyor::Answer, '02: Answer validations' do
-  let(:question) { double(Surveyor::Question) }
+RSpec.describe Surveyor::Answer, '03: Answer validations' do
+  # The code for this test lives in lib/surveyor/answer.rb
+
+  let(:question) { double(Surveyor::Question, type: 'rating') }
 
   context "question validation" do
     context "when the answer has a question" do
-      subject { described_class.new(question: question) }
+      subject { described_class.new(question: question, value: 5) }
       it { should be_valid }
     end
 
     context "when the answer has no question" do
-      subject { described_class.new }
+      subject { described_class.new(value: 5) }
       it { should_not be_valid }
     end
   end
 
   context "for a rating question" do
     # NOTE: Rating questions are rated between 1 and 5.
+    let(:question) { double(Surveyor::Question, type: 'rating') }
+
     context "when the value is 1" do
       subject do
         described_class.new(
           question: question,
-          type: 'rating',
           value: 1
         )
       end
@@ -33,7 +36,6 @@ RSpec.describe Surveyor::Answer, '02: Answer validations' do
       subject do
         described_class.new(
           question: question,
-          type: 'rating',
           value: 5
         )
       end
@@ -45,7 +47,6 @@ RSpec.describe Surveyor::Answer, '02: Answer validations' do
       subject do
         described_class.new(
           question: question,
-          type: 'rating',
           value: 6
         )
       end
@@ -55,8 +56,10 @@ RSpec.describe Surveyor::Answer, '02: Answer validations' do
   end
 
   context "for a free text question" do
+    let(:question) { double(Surveyor::Question, type: 'free_text') }
+
     # NOTE: The rating validations should not apply for 'free_text' questions.
-    subject { described_class.new(type: 'free_text', value: 'anything') }
+    subject { described_class.new(question: question, value: 'anything') }
     it { should be_valid }
   end
 end

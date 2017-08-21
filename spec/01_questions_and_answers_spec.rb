@@ -43,6 +43,10 @@ RSpec.describe '01: Questions and Answers' do
     it "determines that question has not been answered by frank" do
       expect(Response).not_to be_answered(responses, "frank@example.com", :q2)
     end
+
+    it "does not error out if a respondent is not in the survey" do
+      expect(Response).not_to be_answered(responses, "augustus@example.com", :q2)
+    end
   end
 
   context "answer_for_question_by_user" do
@@ -65,26 +69,31 @@ RSpec.describe '01: Questions and Answers' do
     end
 
     it "determines the average for question 3" do
-      expect(Response.question_average(responses, :q3)).to eq(4.66)
+      expect(Response.question_average(responses, :q3)).to eq(4.67)
     end
   end
 
   context "question participation percentage" do
     # NOTE: This percentage is the number of people who have answered question #1.
     # If someone has answered this question, then we will say that they have "participated".
+    # This number is rounded to 2 decimal places.
     it "works out participation percentage for question 1" do
-      expect(Response.question_participation_percentage(responses, :q1)).to eq(0.33)
+      expect(Response.question_participation_percentage(responses, :q1)).to eq(28.57)
     end
 
     it "works out the participation percentage for question 3" do
-      expect(Response.question_participation_percentage(responses, :q3)).to eq(0.5)
+      expect(Response.question_participation_percentage(responses, :q3)).to eq(42.86)
+    end
+
+    it "works out the participation percentage for question 4" do
+      expect(Response.question_participation_percentage(responses, :q4)).to eq(0)
     end
   end
 
   context "overall participation percentage" do
     # NOTE: People are considered to have participated if they have answered at least 1 question.
     it "works out the overall participation percentage" do
-      expect(Response.overall_participation_percentage(responses)).to eq(0.86)
+      expect(Response.overall_participation_percentage(responses)).to eq(42.86)
     end
   end
 end

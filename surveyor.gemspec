@@ -1,4 +1,5 @@
 # coding: utf-8
+
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "surveyor/version"
@@ -9,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Ryan Bigg"]
   spec.email         = ["ryanbigg@cultureamp.com"]
 
-  spec.summary       = %q{Junior developer coding test for Culture Amp}
+  spec.summary       = "Junior developer coding test for Culture Amp"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
@@ -30,4 +31,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "rubocop"
 end

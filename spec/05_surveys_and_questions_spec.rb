@@ -1,6 +1,8 @@
 require 'spec_helper'
 
-RSpec.describe Surveyor::Survey, '04: Surveys, questions and responses' do
+RSpec.describe Surveyor::Survey, '05: Surveys, questions and responses' do
+  # The code for this test lives in lib/surveyor/survey.rb
+
   subject(:survey) { Surveyor::Survey.new(name: "ACME Engagement Survey") }
   let(:question) { double(Surveyor::Question) }
   let(:response) { double(Surveyor::Response) }
