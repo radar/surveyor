@@ -14,11 +14,11 @@ RSpec.describe '00: Respondent Answers' do
       # your code goes here
     end
 
-    def self.positive(responses, user)
+    def self.positive(responses)
       # your code goes here
     end
 
-    def self.negative(responses, user)
+    def self.negative(responses)
       # your code goes here
     end
 
