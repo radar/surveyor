@@ -22,5 +22,5 @@ Style/Documentation:
 Style/TrailingCommaInLiteral:
   Enabled: false
 
-Style/TrailingCommaInArgument:
+Style/TrailingCommaInArguments:
   Enabled: false
